@@ -9,7 +9,12 @@
 
 int moving_sum[5];
 
-void* thread(void *arg){
+struct numinfo{
+int number;
+int index;
+}
+
+void* factorial(void *arg){
   printf("hi\n" );
 }
 int main()
@@ -17,10 +22,14 @@ int main()
 pthread_t t1,t2,t3,t4,t5;
 
 
+
 printf("Enter the first number\n");
-moving_sum[0]= getchar()- '0';
+
 getchar();
-//pthread_create(&t1, NULL, &thread, NULL);
+  struct args numinfo *n = (struct numinfo *)malloc(sizeof(struct numinfo));
+  n->number= getchar()- '0';
+  n->index=1;
+pthread_create(&t1, NULL, &factorial, (void *)n);
 //pthread_join(t1, NULL);
 
 printf("Enter the second number\n");
